@@ -7,6 +7,7 @@ import { useHandGesture } from "../_context/HandGestureContext";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { useRouter } from "next/navigation";
 import DetectiveLamp from "./DetectiveLamp";
+import HandGestureGuide from "./HandGestureGuide";
 
 // Work type definition
 import { works, type Work } from "~/data/works";
@@ -281,6 +282,18 @@ export default function Works() {
   // Hand drag is active when pinching but not over a specific card
   const isHandDragging = isPinching && hoveredCardIndex === null;
   const isInteracting = isCanvasDragging || isHandDragging;
+
+  // Hand gesture guide state
+  const [showGuide, setShowGuide] = useState(false);
+  const prevIsActiveRef = useRef(false);
+
+  // Show guide when hand gestures are activated
+  useEffect(() => {
+    if (isActive && !prevIsActiveRef.current) {
+      setShowGuide(true);
+    }
+    prevIsActiveRef.current = isActive;
+  }, [isActive]);
   
   // Update pin positions after layout
   // No need for refs to calculate positions, use math for stability during zoom
@@ -554,6 +567,9 @@ export default function Works() {
         hasNext={true}
         hasPrev={true}
       />
+
+      {/* Hand Gesture Guide */}
+      <HandGestureGuide isOpen={showGuide} onClose={() => setShowGuide(false)} />
 
       <section className="relative h-screen w-full bg-[#FFF8E7] overflow-hidden">
         
