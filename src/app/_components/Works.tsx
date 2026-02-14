@@ -514,8 +514,8 @@ export default function Works() {
     // We need to shift canvas by (CW/2 - Px, CH/2 - Py).
     
     const targetX = (canvasWidth / 2) - position.x;
-    const targetY = (canvasHeight / 2) - position.y + 100; // +100 to push it down a bit (visual balance)
-
+    const targetY = (canvasHeight / 2) - position.y - 120; // -120 to center the card content (approx half card height)
+    
     animate(x, targetX, { type: "spring", stiffness: 200, damping: 25 });
     animate(y, targetY, { type: "spring", stiffness: 200, damping: 25 });
     // Also reset zoom for better view
