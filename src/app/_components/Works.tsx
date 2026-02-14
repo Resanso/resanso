@@ -127,6 +127,7 @@ function WorkModal({
                 alt={work.title}
                 fill
                 className="object-cover"
+                sizes="(max-width: 768px) 100vw, 800px"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
               
@@ -198,9 +199,7 @@ function StringConnection({
       initial={{ pathLength: 0, opacity: 0 }}
       animate={{ pathLength: 1, opacity: 0.7 }}
       transition={{ duration: 1.5, delay, ease: "easeInOut" }}
-      style={{
-        filter: "drop-shadow(0 1px 2px rgba(185, 28, 28, 0.3))",
-      }}
+      className="md:drop-shadow-[0_1px_2px_rgba(185,28,28,0.3)]"
     />
   );
 }
@@ -560,7 +559,7 @@ export default function Works() {
         
         {/* ... Cork board ... */}
         <div 
-          className="absolute inset-0 opacity-30 pointer-events-none z-0"
+          className="hidden md:block absolute inset-0 opacity-30 pointer-events-none z-0"
           style={{
             backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
           }}
@@ -757,6 +756,7 @@ export default function Works() {
                     alt={work.title}
                     fill
                     className="object-cover"
+                    sizes="(max-width: 768px) 50vw, 20vw"
                   />
                 </div>
                 <h3 className="font-bold text-gray-900 text-sm md:text-base leading-tight select-none">{work.title}</h3>
